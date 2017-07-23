@@ -1,0 +1,53 @@
+{
+ "VCAP_SERVICES": {
+  "compose-for-mongodb": [
+   {
+    "credentials": {
+     "ca_certificate_base64": "",
+     "db_type": "mongodb",
+     "deployment_id": "",
+     "maps": [],
+     "name": "",
+     "uri": "",
+     "uri_cli": "",
+    },
+    "label": "compose-for-mongodb",
+    "name": "Compose for MongoDB-",
+    "plan": "Standard",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "big_data",
+     "data_management",
+     "ibm_created"
+    ],
+    "volume_mounts": []
+   }
+  ],
+  "compose-for-mysql": [
+   {
+    "credentials": {
+     "ca_certificate_base64": "",
+     "db_type": "mysql",
+     "deployment_id": "",
+     "maps": [],
+     "name": "",
+     "uri": "",
+     "uri_cli": "",
+    },
+    "label": "compose-for-mysql",
+    "name": "Compose for MySQL-ne",
+    "plan": "Standard",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "big_data",
+     "data_management",
+     "ibm_created",
+     "ibm_beta"
+    ],
+    "volume_mounts": []
+   }
+  ]
+ }
+}
