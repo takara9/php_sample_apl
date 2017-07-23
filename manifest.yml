@@ -1,0 +1,12 @@
+applications:
+- path: .
+  memory: 64M
+  instances: 1
+  random-route: true
+  domain: mybluemix.net
+  name: phpSample
+  disk_quota: 1024M
+services:
+- Compose for MySQL-ne
+  Cloudant NoSQL DB-zj
+  

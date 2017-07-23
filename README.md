@@ -15,7 +15,18 @@
 * store_encrypter.phpにパスワードを設定
 
 
-## ビルドパック設定のセットアップ
+## Bluemix デプロイへのセットアップ
+
+* Buildpackの設定確認
+* 設定オーバーライド .bp-config/options.json
+* manifest.yml の修正
+
+
+## Bluemix へデプロイ
+
+* bx cf push コマンドをするディレクトリ
+* ビルドパックの設定
+
 
 
 
