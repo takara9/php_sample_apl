@@ -8,5 +8,6 @@ applications:
   disk_quota: 1024M
 services:
 - Compose for MySQL-ne
-  Cloudant NoSQL DB-zj
+  Compose for Redis-44
+  
   
