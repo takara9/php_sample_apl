@@ -5,7 +5,7 @@
 
 ## MySQLデータベースのセットアップ
 
-### Compose for MySQL サービスを作成
+### ClearDB MySQL サービスを作成
 IBM Bluemix カタログから(ClearDB Managed MySQL Database)[https://console.bluemix.net/catalog/services/cleardb-managed-mysql-database?env_id=ibm:yp:us-south&taxonomyNavigation=cf-apps]を作成します。
 
 ### MySQLのパスワード設定
