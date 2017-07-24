@@ -44,11 +44,6 @@ Class Vcap
             }
             echo "\n\n";
         }
-
-        if ($svc == 'compose-for-mysql') {
-        } else {
-            return null;
-        }
     }
 
     // ClearDB (MySQL)
