@@ -7,10 +7,8 @@
 <body>
 
 <h1>ログインページ</h1>
-
-<?php include_once "store_encrypter.php"; ?>
-
 <?php
+session_start();
 if (isset($_SESSION["userid"])) {
    print $_SESSION['userid']."さん、";
    print "既にログイン済みです。<br>";

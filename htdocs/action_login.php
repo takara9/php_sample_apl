@@ -10,7 +10,7 @@
 <h1>Bluemix PHPランタイムで開発するサンプルPHPです</h1>
 
 <?php
-include "store_encrypter.php";
+session_start();
 
 if (strlen($_POST['userid']) > 0 and strlen($_POST['passwd']) > 0) {
     $_SESSION["userid"] =  $_POST['userid'];

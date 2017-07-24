@@ -1,7 +1,5 @@
-<?php include "store_encrypter.php"; ?>
-
 <?php
-
+session_start();
 if (! isset($_SESSION["userid"])) {
     // 認証がなければログインページに飛ばす
     include "login.php";

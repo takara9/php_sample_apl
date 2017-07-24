@@ -9,6 +9,5 @@ applications:
   buildpack: https://github.com/cloudfoundry/php-buildpack
 services:
 - Compose for MySQL-ne
-- Compose for Redis-44
   
   
