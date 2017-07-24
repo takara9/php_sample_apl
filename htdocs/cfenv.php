@@ -1,6 +1,6 @@
 <?php
 
-Class Vcap
+Class Cfenv
 {
     public $user;
     public $pass;
@@ -10,42 +10,58 @@ Class Vcap
     public $ca_pem_filename;
     public $label;
     public $dbname;
-
+    public $vcap_service;
+    
     // Constructor
-    function __construct($inst_name) {
-        
+    function __construct() {
         if (isset($_ENV["VCAP_SERVICES"])) {
-            $vcap_services = json_decode($_ENV["VCAP_SERVICES"]);
+            $this->vcap_services = json_decode($_ENV["VCAP_SERVICES"]);
         } else {
-            $vcap_services = json_decode(file_get_contents("vcap-local.json"))->{'VCAP_SERVICES'};
-        }
-
-        foreach($vcap_services as $key => $value) {
-            $array = $vcap_services->{$key};
-            foreach($array as $idx => $value) {
-                if ($inst_name == $array[$idx]->name) {
-                    $this->label = $array[$idx]->label;
-                    switch ($this->label) {
-                    case 'cleardb':
-                        $this->parser_cleardb($array[$idx]->credentials);
-                        break;
-                    case 'compose-for-mysql':
-                        $this->ca_pem_filename = $this->label."_".$idx.".pem";
-                        $this->parser_compose_for_mysql($array[$idx]->credentials);
-                        break;
-                    case 'compose-for-postgresql':
-                        $this->ca_pem_filename = $this->label."_".$idx.".pem";
-                        $this->parser_compose_for_postgressql($array[$idx]->credentials);
-                        break;
-                    default:
-                        echo "ERROR\n";
-                    }
-                }
-            }
-            echo "\n\n";
+            $this->vcap_services = json_decode(file_get_contents("vcap-local.json"))->{'VCAP_SERVICES'};
         }
     }
 
+    public function byInstName($inst_name) {
+        foreach($this->vcap_services as $key => $value) {
+            $array = $this->vcap_services->{$key};
+            foreach($array as $idx => $value) {
+                if ($inst_name == $array[$idx]->name) {
+                    $this->parse_by_service($array[$idx],$idx);
+                }
+            }
+        }
+    }
+
+        
+    public function byServiceName($svc_name) {
+        foreach($this->vcap_services as $key => $value) {
+            if ($key == $svc_name) {
+                $array = $this->vcap_services->{$key};
+                $idx = 0;
+                $this->parse_by_service($array[$idx],$idx);
+            }
+        }
+    }
+        
+    function parse_by_service($inst,$idx) {
+        $this->label = $inst->label;
+        switch ($this->label) {
+        case 'cleardb':
+            $this->parser_cleardb($inst->credentials);
+            break;
+        case 'compose-for-mysql':
+            $this->ca_pem_filename = $this->label."_".$idx.".pem";
+            $this->parser_compose_for_mysql($inst->credentials);
+            break;
+        case 'compose-for-postgresql':
+            $this->ca_pem_filename = $this->label."_".$idx.".pem";
+            $this->parser_compose_for_postgressql($inst->credentials);
+            break;
+        default:
+            echo "ERROR\n";
+        }
+    }
+        
     // ClearDB (MySQL)
     function parser_cleardb($vcap) {
         $this->host   = $vcap->hostname;

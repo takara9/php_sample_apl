@@ -26,7 +26,9 @@ if (! isset($_SESSION["userid"])) {
 
 <?php
 include "cfenv.php";
-$vcap = new Vcap('ClearDB Managed MySQL Database-bn');
+$vcap = new Cfenv();
+$vcap->byServiceName("cleardb");
+
 $dsn = 'mysql:host='.$vcap->host.";port=".$vcap->port.";dbname=".$vcap->dbname;
 
 $ops = array(
