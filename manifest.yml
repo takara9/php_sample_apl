@@ -1,13 +1,14 @@
 applications:
 - path: .
   memory: 64M
-  instances: 2
+  instances: 1
   random-route: true
   domain: mybluemix.net
   name: phpSample
   disk_quota: 1024M
   buildpack: https://github.com/cloudfoundry/php-buildpack
 services:
-- Compose for MySQL-ne
+- Compose for PostgreSQL-4w
+
   
   
