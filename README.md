@@ -1,4 +1,4 @@
-# Bluemix PHP + PostgreSQL テスト用アプリ
+# PHP + PostgreSQL テスト用アプリ
 
 このPHPのサンプル・アプリは、Bluemix上で PHPからPostgreSQL をアクセスするためのサンプルコードです。
 外部のセッション・ストアを利用せず、Bluemix のロードバランサー gorouter のセッション・アフィニティの機能でセッション情報を維持します。
