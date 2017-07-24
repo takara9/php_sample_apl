@@ -1,4 +1,4 @@
-# Bluemix PHP + MySQL テスト用アプリ
+# PHP + MySQL テスト用アプリ
 
 このPHPのサンプル・アプリは、Bluemix上で PHPからMySQL をアクセスするためのサンプルコードです。
 外部のセッション・ストアを利用せず、Bluemix のロードバランサー gorouter のセッション・アフィニティの機能でセッション情報を維持します。
