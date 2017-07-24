@@ -23,21 +23,24 @@ if (! isset($_SESSION["userid"])) {
 <th width="100" align="center">ID</th>
 <th width="200">NAME</th>
 </tr>
+
 <?php
-include "vcap.php";
-$vcap = new Vcap('compose-for-mysql');
+include "cfenv.php";
+$vcap = new Vcap('ClearDB Managed MySQL Database-bn');
 $dsn = 'mysql:host='.$vcap->host.";port=".$vcap->port.";dbname=testdb";
+
 $ops = array(
     PDO::MYSQL_ATTR_SSL_CA => __DIR__ ."/". $vcap->ca_pem_filename,
     PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
 );
+
 $dbh = new PDO($dsn, $vcap->user, $vcap->pass, $ops);
-//$dbh = new PDO($dsn, $vcap->user, $vcap->pass);
+
 foreach($dbh->query('SELECT id, name FROM animals') as $row) {
-print "<tr>";
+    print "<tr>";
     print "<td align=\"center\">".$row['id']."</td>";
     print "<td>".$row['name']."</td>";
-print "</tr>";
+    print "</tr>";
 }
 $dbh = null;
 ?>
