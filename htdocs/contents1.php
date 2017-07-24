@@ -25,7 +25,8 @@ if (! isset($_SESSION["userid"])) {
 </tr>
 <?php
 include "cfenv.php";
-$vcap = new Cfenv('compose-for-mysql');
+$vcap = new Cfenv('Compose for PostgreSQL-4w');
+
 $dsn = "pgsql:host=".$vcap->host.";port=".$vcap->port.";dbname=".$vcap->dbname.";user=".$vcap->user.";password=".$vcap->pass.";sslmode=require";
 
 $dbh = new PDO($dsn);

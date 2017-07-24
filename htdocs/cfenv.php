@@ -42,12 +42,6 @@ Class Cfenv
                     }
                 }
             }
-            echo "\n\n";
-        }
-
-        if ($svc == 'compose-for-mysql') {
-        } else {
-            return null;
         }
     }
 
