@@ -1,4 +1,4 @@
-# Bluemix PHP + MySQL テスト用アプリ
+# PHP + MySQL テスト用アプリ ClearDB版
 
 このPHPのサンプル・アプリは、Bluemix上で PHPからMySQL をアクセスするためのサンプルコードです。
 外部のセッション・ストアを利用せず、Bluemix のロードバランサー gorouter のセッション・アフィニティの機能でセッション情報を維持します。
@@ -6,7 +6,7 @@
 ## MySQLデータベースのセットアップ
 
 ### Compose for MySQL サービスを作成
-IBM Bluemix カタログから(Compose for MySQL)[https://console.bluemix.net/catalog/services/compose-for-mysql?env_id=ibm:yp:us-south&taxonomyNavigation=apps]を作成します。
+IBM Bluemix カタログから(ClearDB Managed MySQL Database)[https://console.bluemix.net/catalog/services/cleardb-managed-mysql-database?env_id=ibm:yp:us-south&taxonomyNavigation=cf-apps]を作成します。
 
 ### MySQLのパスワード設定
 MySQLのサービス資格情報の中から、MySQLサーバーのパスワードを確認して、setup_db.sh のPASSWDにに文字列をセットします。
@@ -36,7 +36,7 @@ setup_db.shを実行して、データベースの作成、及び、サンプル
      8	  disk_quota: 1024M
      9	  buildpack: https://github.com/cloudfoundry/php-buildpack
     10	services:
-    11	- Compose for MySQL-ne
+    11	- 
 ~~~
 
 
