@@ -26,16 +26,22 @@ if (! isset($_SESSION["userid"])) {
 <?php
 include "cfenv.php";
 $vcap = new Cfenv();
-$vcap->byServiceName('compose-for-postgresql');
+$vcap->byServiceName('dashDB');
 
-$dsn = "pgsql:host=".$vcap->host.";port=".$vcap->port.";dbname=".$vcap->dbname.";user=".$vcap->user.";password=".$vcap->pass.";sslmode=require";
 
-$dbh = new PDO($dsn);
+$dsn = "ibm:DRIVER={IBM DB2 ODBC DRIVER}".
+       ";DATABASE=".$vcap->dbname.
+       ";HOSTNAME=".$vcap->host.
+       ";PORT=50001".
+       ";PROTOCOL=TCPIP".
+       ";SECURITY=SSL;";
+
+$dbh = new PDO($dsn,$vcap->user,$vcap->pass);
+
 foreach($dbh->query('SELECT id, name FROM animals') as $row) {
-
 print "<tr>";
-    print "<td align=\"center\">".$row['id']."</td>";
-    print "<td>".$row['name']."</td>";
+    print "<td align=\"center\">".$row[0]."</td>";
+    print "<td>".$row[1]."</td>";
 print "</tr>";
 }
 $dbh = null;

@@ -1,4 +1,5 @@
 {
-    "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt", "mbstring", "pdo", "pdo_mysql", "openssl", "pgsql", "pdo_pgsql" ],
-    "PHP_VERSION": "{PHP_71_LATEST}"
+    "LIBDIR": "lib:/home/vcap/app/php/lib",
+    "PHP_VERSION": "5.6.30",
+    "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt", "mbstring", "odbc", "pdo", "pdo_ibm" ]
 }

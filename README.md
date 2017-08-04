@@ -1,29 +1,42 @@
 # PHP + Db2 テスト用アプリ
 
-このPHPのサンプル・アプリは、Bluemix上で PHPからPostgreSQL をアクセスするためのサンプルコードです。
+このPHPのサンプル・アプリは、Bluemix上で PHPからDb2 をアクセスするためのサンプルコードです。
 外部のセッション・ストアを利用せず、Bluemix のロードバランサー gorouter のセッション・アフィニティの機能でセッション情報を維持します。
 
-## PostgreSQL データベースのセットアップ
+## Db2 データベースのセットアップ
 
-### Compose for PostgreSQL サービスを作成
-IBM Bluemix カタログから(Compose for PostgreSQL)[https://console.bluemix.net/catalog/services/compose-for-postgresql?env_id=ibm:yp:us-south&taxonomyNavigation=cf-apps]を作成します。
+### Db2 Warehouse on Cloud
+IBM Bluemix カタログから(Db2 wareHouse on Cloud)[https://console.bluemix.net/catalog/services/db2-warehouse-on-cloud?region=ibm:yp:au-syd&env_id=ibm:yp:us-south&taxonomyNavigation=services]を作成します。
 
-### PostgreSQLのパスワード設定
-PostgreSQLのサービス資格情報の中から、PostgreSQLサーバーのパスワードを確認して、setup_db.sh のPASSWDに文字列をセットします。
+### clpplus 設定
+Db2 Warehouse on Cloud の管理画面を開いて、Connection info のページから、Data Server Driver Package をダウンロードします。ドライバーのダウンロードと設定方法は、Qiita [PHP最新バージョン5.6系／7系からのDb2接続](http://qiita.com/MahoTakara/items/24cd9acd0249186ea617)に書いておきました。
+
 
 ### DBセットアップ
-setup_db.shを実行して、データベースの作成、及び、サンプルデータをロードします。
+clpplus で Bb2へログインします。
+
+~~~
+clpplus -nw USERNAME@LABEL
+~~~
+
+次に、SQLを実行してテスト用データを作成します。
+
+~~~
+SQL> start ./setup.sql
+~~~
 
 
 ## Bluemix デプロイへのセットアップ
 
 ### Buildpackの設定確認
 
-このビルドパックは、CloudFoundry の https://github.com/cloudfoundry/php-buildpack または 高良がフォークした https://github.com/takara9/php_sample_apl を利用できます。どちらを利用しても差がありません。
+2017/8/4現在のPHPの最新バージョン5.6.31, 7.1.7 からDb2と接続するために、cloudfoundry/php-buildpack https://github.com/cloudfoundry/php-buildpack を少しカスタマイズして利用します。　カスタマイズしたビルドパックは、高良がフォークした https://github.com/takara9/php_sample_apl にあります。
+
+それから、Db2 のドライバーを組み込んだ PHP実行形式を 旧SoftLayer の Swift Object Storage に置いてあり、前述のビルドパックは、ダウンロードしてランタイムを構成します。
 
 
 ### manifest.yml の修正
-この11行目の MySQL のインスタンス名を変更します。PostgreSQLのインスタンス名は、CLI の bx cf services で調べることができます。
+この11行目の Db2のインスタンス名を変更します。Blumix CLI の bx cf services で調べることができます。
 
 ~~~
      1	applications:
@@ -33,10 +46,10 @@ setup_db.shを実行して、データベースの作成、及び、サンプル
      5	  random-route: true
      6	  domain: mybluemix.net
      7	  name: phpSample
-     8	  disk_quota: 1024M
-     9	  buildpack: https://github.com/cloudfoundry/php-buildpack
+     8	  disk_quota: 512M
+     9	  buildpack: https://github.com/takara9/php-buildpack
     10	services:
-    11	- Compose for PostgreSQL-4w
+    11	- dashDB for Analytics-iq
 ~~~
 
 
@@ -49,7 +62,6 @@ bx cf push
 ~~~
  
 これで、Bluemix から割り当てられたURLでアクセスすれば、サンプル・アプリで、動作を確認することができます。
-
 
 
 

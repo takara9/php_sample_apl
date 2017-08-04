@@ -49,6 +49,9 @@ Class Cfenv
         case 'cleardb':
             $this->parser_cleardb($inst->credentials);
             break;
+        case 'dashDB':
+            $this->parser_dashdb($inst->credentials);
+            break;
         case 'compose-for-mysql':
             $this->ca_pem_filename = $this->label."_".$idx.".pem";
             $this->parser_compose_for_mysql($inst->credentials);
@@ -60,6 +63,16 @@ Class Cfenv
         default:
             echo "ERROR\n";
         }
+    }
+
+    // dashDB (Db2)
+    function parser_dashdb($vcap) {
+        $this->host   = $vcap->hostname;
+        $this->port   = $vcap->port;
+        $this->ca     = null;
+        $this->user   = $vcap->username;
+        $this->pass   = $vcap->password;
+        $this->dbname = $vcap->db;
     }
         
     // ClearDB (MySQL)
