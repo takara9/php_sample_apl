@@ -11,10 +11,10 @@ if (! isset($_SESSION["userid"])) {
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>コンテンツ１</title>
+<title>Db2アクセス</title>
 </head>
 <body>
-<h1>コンテンツ１</h1>
+<h1>Db2アクセス</h1>
 <p>Bluemix PHPランタイムのサンプル・コードです</p>
 <p>このコンテンツは、ログインしていないと見えないものです。</p>
 

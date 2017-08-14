@@ -11,10 +11,10 @@ if (! isset($_SESSION["userid"])) {
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>コンテンツ２</title>
+<title>phpinfo()表示</title>
 </head>
 <body>
-<h1>コンテンツ２</h1>
+<h1>phpinfo()表示</h1>
 <p>Bluemix PHPランタイムのサンプル・コードです</p>
 このコンテンツは、ログインしていないと見えないものです。
 <?php include "menu.php"; ?>
