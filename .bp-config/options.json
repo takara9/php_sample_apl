@@ -1,5 +1,5 @@
 {
     "LIBDIR": "lib:/home/vcap/app/php/lib",
-    "PHP_VERSION": "5.6.30",
+    "PHP_VERSION": "5.6.31",
     "PHP_EXTENSIONS": ["bz2", "zlib", "curl", "mcrypt", "mbstring", "odbc", "pdo", "pdo_ibm" ]
 }
