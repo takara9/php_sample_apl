@@ -2,9 +2,9 @@ applications:
 - path: .
   memory: 64M
   instances: 1
-  random-route: true
+  random-route: false
   domain: mybluemix.net
-  name: phpSample
+  name: phpSamplexx
   disk_quota: 512M
   buildpack: https://github.com/takara9/php-buildpack
 services:

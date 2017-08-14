@@ -41,4 +41,4 @@ if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
 
 </body>
 </html>
-
+<?php } ?>
