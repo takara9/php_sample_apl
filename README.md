@@ -6,7 +6,7 @@
 ## Db2 データベースのセットアップ
 
 ### Db2 Warehouse on Cloud
-IBM Bluemix カタログから(Db2 wareHouse on Cloud)[https://console.bluemix.net/catalog/services/db2-warehouse-on-cloud?region=ibm:yp:au-syd&env_id=ibm:yp:us-south&taxonomyNavigation=services]を作成します。
+IBM Bluemix カタログから[Db2 wareHouse on Cloud](https://console.bluemix.net/catalog/services/db2-warehouse-on-cloud?region=ibm:yp:au-syd&env_id=ibm:yp:us-south&taxonomyNavigation=services)を作成します。
 
 ### clpplus 設定
 Db2 Warehouse on Cloud の管理画面を開いて、Connection info のページから、Data Server Driver Package をダウンロードします。ドライバーのダウンロードと設定方法は、Qiita [PHP最新バージョン5.6系／7系からのDb2接続](http://qiita.com/MahoTakara/items/24cd9acd0249186ea617)に書いておきました。
