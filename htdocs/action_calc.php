@@ -5,11 +5,13 @@ if (! isset($_SESSION["userid"])) {
     include "login.php";
 } else {
     // 認証後に表示するコンテンツ
+    include "cfenv.php";
     include "rest_if.php";
-
-    $param['username'] = "takara";
-    $param['password'] = "hogehoge";
-
+    $vcap = new Cfenv();
+    $vcap->byInstName('pycalcxxu');
+    $param['username'] = $vcap->user;
+    $param['password'] = $vcap->pass;
+    $uri = $vcap->uri;
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,6 @@ if (! isset($_SESSION["userid"])) {
 <p>この計算処理は、python で作られたRESTサービスのコンテナで計算され、結果を返します。</p>
 
 
-
 <?php
 if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
     $_SESSION["val_a"] =  $_POST['val_a'];
@@ -35,13 +36,8 @@ if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
     $param['b'] = $_SESSION["val_b"];
     $post['json'] = json_encode($param);
 
-    $url = "https://pycalcxx.mybluemix.net/calc";
-    //$url = "http://localhost:5000/";
-
-    $reply = curl_post($url,$post);
+    $reply = curl_post($uri,$post);
     $result = json_decode($reply);
-    // print $result->{'ans'}."\n";
-
 ?>
 
 <br>

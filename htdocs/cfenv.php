@@ -11,6 +11,7 @@ Class Cfenv
     public $label;
     public $dbname;
     public $vcap_service;
+    public $uri;
     
     // Constructor
     function __construct() {
@@ -32,7 +33,6 @@ Class Cfenv
         }
     }
 
-        
     public function byServiceName($svc_name) {
         foreach($this->vcap_services as $key => $value) {
             if ($key == $svc_name) {
@@ -60,6 +60,11 @@ Class Cfenv
             $this->ca_pem_filename = $this->label."_".$idx.".pem";
             $this->parser_compose_for_postgressql($inst->credentials);
             break;
+        case 'user-provided':
+	    $this->user = $inst->credentials->username;
+            $this->pass = $inst->credentials->password;
+            $this->uri  = $inst->credentials->uri;	
+            break;
         default:
             echo "ERROR\n";
         }
@@ -84,7 +89,6 @@ Class Cfenv
         $this->pass   = $vcap->password;
         $this->dbname = $vcap->name;
     }
-
 
     // Compose for MySQL
     function parser_compose_for_mysql($vcap) {
