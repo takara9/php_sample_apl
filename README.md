@@ -3,6 +3,8 @@
 このPHPのサンプル・アプリは、Bluemix上で PHPからDb2 をアクセスするためのサンプルコードです。
 外部のセッション・ストアを利用せず、Bluemix のロードバランサー gorouter のセッション・アフィニティの機能でセッション情報を維持します。
 
+ユーザー提供RESTサービスとの連携機能を追加しました。ユーザー提供RESTサービスのサンプルコード https://github.com/takara9/REST_Sample_Python 連携できます。 
+
 ## Db2 データベースのセットアップ
 
 ### Db2 Warehouse on Cloud
@@ -50,6 +52,7 @@ SQL> start ./setup.sql
      9	  buildpack: https://github.com/takara9/php-buildpack
     10	services:
     11	- dashDB for Analytics-iq
+    12  - pycalcxxu
 ~~~
 
 
