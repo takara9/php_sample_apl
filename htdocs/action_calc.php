@@ -38,6 +38,10 @@ if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
 
     $reply = curl_post($uri,$post);
     $result = json_decode($reply);
+
+    if ($result->{'error'} == 401) {
+       print "<br>*** REST認証エラー発生 ***<br>";
+    }
 ?>
 
 <br>
