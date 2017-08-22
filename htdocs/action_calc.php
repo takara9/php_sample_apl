@@ -9,9 +9,6 @@ if (! isset($_SESSION["userid"])) {
     include "rest_if.php";
     $vcap = new Cfenv();
     $vcap->byInstName('pycalcxxu');
-    $param['username'] = $vcap->user;
-    $param['password'] = $vcap->pass;
-    $uri = $vcap->uri;
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +26,12 @@ if (! isset($_SESSION["userid"])) {
 
 <?php
 if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
-    $_SESSION["val_a"] =  $_POST['val_a'];
-    $_SESSION["val_b"] =  $_POST['val_b'];
+   $form = array(
+       'a' => $_POST['val_a'],
+       'b' => $_POST['val_b']
+   );
 
-    $param['a'] = $_SESSION["val_a"];
-    $param['b'] = $_SESSION["val_b"];
-    $post['json'] = json_encode($param);
-
-    $reply = curl_post($uri,$post);
+    $reply = curl_post($vcap->uri,$form	,$vcap->username,$vcap->password);
     $result = json_decode($reply);
 
     if ($result->{'error'} == 401) {
@@ -45,8 +40,8 @@ if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
 ?>
 
 <br>
-値A : <?php echo $_SESSION["val_a"] ?><br>
-値B : <?php echo $_SESSION["val_b"] ?><br>
+値A : <?php echo $_PORT["val_a"] ?><br>
+値B : <?php echo $_PORT["val_b"] ?><br>
 結果: <?php echo $result->{'ans'} ?><br>
 <br>
     
