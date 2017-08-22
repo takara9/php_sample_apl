@@ -26,22 +26,24 @@ if (! isset($_SESSION["userid"])) {
 
 <?php
 if (strlen($_POST['val_a']) > 0 and strlen($_POST['val_b']) > 0) {
-   $form = array(
+
+    $form = array(
        'a' => $_POST['val_a'],
        'b' => $_POST['val_b']
-   );
+    );
 
-    $reply = curl_post($vcap->uri,$form	,$vcap->username,$vcap->password);
+    $auth = array(
+    	  CURLOPT_USERPWD => $vcap->user.":".$vcap->pass
+    );	
+
+    $reply = curl_post($vcap->uri, $form, $auth);
     $result = json_decode($reply);
 
-    if ($result->{'error'} == 401) {
-       print "<br>*** REST認証エラー発生 ***<br>";
-    }
 ?>
 
 <br>
-値A : <?php echo $_PORT["val_a"] ?><br>
-値B : <?php echo $_PORT["val_b"] ?><br>
+値A : <?php echo $_POST["val_a"] ?><br>
+値B : <?php echo $_POST["val_b"] ?><br>
 結果: <?php echo $result->{'ans'} ?><br>
 <br>
     

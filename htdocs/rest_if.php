@@ -1,6 +1,6 @@
 <?php
 
-function curl_post($url, array $form = NULL, array $options = array(),$user,$pass)
+function curl_post($url, array $form = NULL, array $options = array())
 {
     $defaults = array(
         CURLOPT_POST => 1,
@@ -10,7 +10,6 @@ function curl_post($url, array $form = NULL, array $options = array(),$user,$pas
 	CURLOPT_RETURNTRANSFER => 1,
 	CURLOPT_FORBID_REUSE => 1,
 	CURLOPT_TIMEOUT => 4,
-	CURLOPT_USERPWD => $user.":".$pass,
 	CURLOPT_POSTFIELDS => http_build_query($form)
     );
 
